@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 export default function Profile() {
+    const userData = JSON.parse(localStorage.getItem("userData"))
     return (
         <div>
             <style>
@@ -60,7 +61,7 @@ export default function Profile() {
                                             width={150}
                                         />
                                         <div className="mt-3">
-                                            <h4>Yash Kheni</h4>
+                                            <h4>{userData?.name ?? "-"}</h4>
                                             <p className="text-secondary mb-1">Full Stack Developer</p>
                                            <br/>
                                             <button className="btn btn-primary">View Profile</button>
@@ -78,49 +79,49 @@ export default function Profile() {
                                         <div className="col-sm-3">
                                             <h6 className="mb-0">Name</h6>
                                         </div>
-                                        <div className="col-sm-9 text-secondary">Yash Kheni</div>
+                                        <div className="col-sm-9 text-secondary">{userData?.name ?? "-"}</div>
                                     </div>
                                     <hr />
                                     <div className="row">
                                         <div className="col-sm-3">
                                             <h6 className="mb-0">Email</h6>
                                         </div>
-                                        <div className="col-sm-9 text-secondary">yashkheni55@gmail.com</div>
+                                        <div className="col-sm-9 text-secondary">{userData?.email ?? "-"}</div>
                                     </div>
                                     <hr />
                                     <div className="row">
                                         <div className="col-sm-3">
                                             <h6 className="mb-0">Phone</h6>
                                         </div>
-                                        <div className="col-sm-9 text-secondary">7778883067</div>
+                                        <div className="col-sm-9 text-secondary">{userData?.phone ?? "-"}</div>
                                     </div>
                                     <hr />
                                     <div className="row">
                                         <div className="col-sm-3">
                                             <h6 className="mb-0">City</h6>
                                         </div>
-                                        <div className="col-sm-9 text-secondary">Surat</div>
+                                        <div className="col-sm-9 text-secondary">{userData?.city ?? "-"}</div>
                                     </div>
                                     <hr />
                                     <div className="row">
                                         <div className="col-sm-3">
                                             <h6 className="mb-0">State</h6>
                                         </div>
-                                        <div className="col-sm-9 text-secondary">Gujarat</div>
+                                        <div className="col-sm-9 text-secondary">{userData?.state ?? "-"}</div>
                                     </div>
                                     <hr />
                                     <div className="row">
                                         <div className="col-sm-3">
                                             <h6 className="mb-0">Country</h6>
                                         </div>
-                                        <div className="col-sm-9 text-secondary">India</div>
+                                        <div className="col-sm-9 text-secondary">{userData?.country ?? "-"}</div>
                                     </div>
                                     <hr />
                                     <div className="row">
                                         <div className="col-sm-3">
                                             <h6 className="mb-0">Pincode</h6>
                                         </div>
-                                        <div className="col-sm-9 text-secondary">3954006</div>
+                                        <div className="col-sm-9 text-secondary">{userData?.pincode ?? "-"}</div>
                                     </div>
                                     <hr />
                                     <div className="row">
@@ -128,7 +129,7 @@ export default function Profile() {
                                             <h6 className="mb-0">Address</h6>
                                         </div>
                                         <div className="col-sm-9 text-secondary">
-                                        Panchavati raw house
+                                        {userData?.address ?? "-"}
                                         </div>
                                     </div>
                                     <hr />

@@ -1,49 +1,37 @@
 import axios from 'axios'
-import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
-import { toast } from 'react-toastify'
+import React,{useState} from 'react'
+import {  useNavigate } from 'react-router-dom'
 import { baseUrl } from '../BaseUrl/BaseUrl'
 
-export default function Changepassword() {
-    const navigate = useNavigate()
-    const [newData,setNewData] = useState({
-        password:"",
-        confirmPassword:""
-    })
-
+export default function Rechangepassword() {
+  const navigate = useNavigate()
+  const userData = JSON.parse(localStorage.getItem("userData"))
+    const [newData,setNewData] = useState({})
     const handleChange = (e) =>{
         let {name,value} = e.target
         setNewData({...newData,[name]:value})
     }
-
     const handleSubmit = async() =>{
-        if(newData?.password === newData?.confirmPassword){
-
-            let  body ={
-                email : localStorage.getItem("email"),
-            password: newData?.password,
-            
-            }
-            await axios.post(baseUrl +"users/verify-password",body).then((res)=>{
-              console.log("res",res)
-              toast.success(res?.data?.message)
-    
-              localStorage.setItem("email",newData)
-              navigate("/login")
-            }).catch((err)=>{
-              console.log("err",err)
-            })
-        }else{
-            toast.error("password and confirm password are not match")
+      let body ={
+        email : userData?.email,
+        password : newData?.password,
+        oldPassword:newData?.oldPassword
+      }
+      let config ={
+        headers: {
+          'Authorization':'Bearer ' + localStorage.getItem("token") 
         }
       }
-    
-     React.useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
-    return (
-        <div>
-           <section
+await axios.post(baseUrl + "users/change-password",body,config).then((res)=>{
+  setNewData({})
+  navigate("/")
+}).catch((err)=>{
+  console.log("err",err)
+})
+    }
+  return (
+    <div>
+       <section
   className="vh-100 bg-image"
   style={{
     backgroundImage:
@@ -60,6 +48,19 @@ export default function Changepassword() {
                 Change password
               </h2>
               <form>
+              <div className="form-outline mb-4">
+                  <input
+                    type="password"
+                    name="oldPassword"
+                    className="form-control form-control-lg"
+                    placeholder="old password"
+                    value={newData?.oldPassword}
+                    onChange={(e)=>{handleChange(e)}}
+                    
+                  />
+                  
+                </div>
+
                 
                 <div className="form-outline mb-4">
                   <input
@@ -68,7 +69,7 @@ export default function Changepassword() {
                     className="form-control form-control-lg"
                     placeholder="new password"
                     value={newData?.password}
-                    onChange={(e)=> handleChange(e)}
+                    onChange={(e)=>{handleChange(e)}}
                     
                   />
                   
@@ -77,11 +78,12 @@ export default function Changepassword() {
                 <div className="form-outline mb-4">
                   <input
                     type="password"
-                    name="confirmPassword"
+                    name="confirPassword"
                     className="form-control form-control-lg"
                     placeholder=" confirm password"
-                    value={newData?.confirmPassword}
-                    onChange={(e)=> handleChange(e)}
+                    value={newData?.confirPassword}
+                    onChange={(e)=>{handleChange(e)}}
+                    
                   />
                   
                 </div>
@@ -107,6 +109,7 @@ export default function Changepassword() {
   </div>
 </section>
 
-        </div>
-    );
+
+    </div>
+  )
 }

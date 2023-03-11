@@ -1,49 +1,37 @@
 import axios from 'axios'
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { toast } from 'react-toastify'
 import { baseUrl } from '../BaseUrl/BaseUrl'
 
-export default function Changepassword() {
-    const navigate = useNavigate()
-    const [newData,setNewData] = useState({
-        password:"",
-        confirmPassword:""
-    })
-
+export default function Vendor() {
+  const navigate = useNavigate()
+    const [newData,setNewData] = useState({})
     const handleChange = (e) =>{
         let {name,value} = e.target
         setNewData({...newData,[name]:value})
     }
-
     const handleSubmit = async() =>{
-        if(newData?.password === newData?.confirmPassword){
-
-            let  body ={
-                email : localStorage.getItem("email"),
-            password: newData?.password,
-            
-            }
-            await axios.post(baseUrl +"users/verify-password",body).then((res)=>{
-              console.log("res",res)
-              toast.success(res?.data?.message)
-    
-              localStorage.setItem("email",newData)
-              navigate("/login")
-            }).catch((err)=>{
-              console.log("err",err)
-            })
-        }else{
-            toast.error("password and confirm password are not match")
+      let body ={
+        bankName : newData?.bankName,
+        accountNumber : Number(newData?.bankNumber),
+        ifscCode:newData?.ifsc
+      }
+      let config ={
+        headers: {
+          'Authorization':'Bearer ' + localStorage.getItem("token") 
         }
       }
-    
-     React.useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
-    return (
-        <div>
-           <section
+await axios.post(baseUrl + "users/create-vendor",body,config).then((res)=>{
+  setNewData({})
+  localStorage.setItem("userData",JSON.stringify(res?.data?.user))
+  navigate("/")
+}).catch((err)=>{
+  console.log("err",err)
+})
+    }
+  return (
+    <div>
+      <section
   className="vh-100 bg-image"
   style={{
     backgroundImage:
@@ -57,17 +45,28 @@ export default function Changepassword() {
           <div className="card" style={{ borderRadius: 15 }}>
             <div className="card-body p-5">
               <h2 className="text-uppercase text-center mb-5">
-                Change password
+                ADD ME AS A VENDOR
               </h2>
               <form>
-                
+              <div className="form-outline mb-4">
+                  <input
+                    type="text"
+                    name="bankName"
+                    className="form-control form-control-lg"
+                    placeholder="Bank Name"
+                    value={newData?.bankName}
+                    onChange={(e)=> handleChange(e)}
+                    
+                  />
+                  
+                </div>
                 <div className="form-outline mb-4">
                   <input
-                    type="password"
-                    name="password"
+                    type="number"
+                    name="bankNumber"
                     className="form-control form-control-lg"
-                    placeholder="new password"
-                    value={newData?.password}
+                    placeholder="Bank Acc Number"
+                    value={newData?.bankNumber}
                     onChange={(e)=> handleChange(e)}
                     
                   />
@@ -76,12 +75,13 @@ export default function Changepassword() {
 
                 <div className="form-outline mb-4">
                   <input
-                    type="password"
-                    name="confirmPassword"
+                    type="text"
+                    name="ifsc"
                     className="form-control form-control-lg"
-                    placeholder=" confirm password"
-                    value={newData?.confirmPassword}
+                    placeholder=" ifsc code"
+                    value={newData?.ifsc}
                     onChange={(e)=> handleChange(e)}
+                    
                   />
                   
                 </div>
@@ -91,9 +91,9 @@ export default function Changepassword() {
                   <button
                     type="button"
                     className="btn btn-primary mb-5"
-                    onClick={handleSubmit}
+                  onClick={handleSubmit}
                   >
-                    submit
+                    add
                   </button>
                   
                 </div>
@@ -107,6 +107,7 @@ export default function Changepassword() {
   </div>
 </section>
 
-        </div>
-    );
+
+    </div>
+  )
 }

@@ -19,6 +19,10 @@ import Changepassword from "./changepassword/Changepassword";
 import Forgetpassword from "./forgetpassword/Forgetpassword";
 import Profile from "./profile/Profile";
 import EditProfile from "./profile/Editprofile";
+import Vendor from "./vendor/Vendor";
+import Rechangepassword from "./rechangepassword/rechangepassword";
+import Property from "./property";
+import Propertyform from "./propertyform";
 
 function Router() {
   return (
@@ -43,6 +47,10 @@ function Router() {
       <Route path="/forgetpassword" element={<Forgetpassword />}></Route>
       <Route path="/profile" element={<Profile />}></Route>
       <Route path="/editprofile" element={<EditProfile />}></Route>
+      <Route path="/vendor" element={<Vendor />}></Route>
+      <Route path="/rechangepassword" element={< Rechangepassword />}></Route>
+      <Route path="/property" element={< Property />}></Route>
+      <Route path="/propertyform" element={< Propertyform />}></Route>
     </Routes>
     //</BrowserRouter>
   );

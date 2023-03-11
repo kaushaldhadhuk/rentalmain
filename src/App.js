@@ -10,6 +10,7 @@ import Home from './home';
 import Script from './script';
 import Router from './router';
 import { BrowserRouter } from 'react-router-dom';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 function App() {

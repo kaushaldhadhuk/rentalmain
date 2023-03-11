@@ -11,7 +11,7 @@ export default function Home() {
       <>
   {/* Header Start */}
   <div className="container-fluid header bg-white p-0 position-relative">
-    <div className="row g-0 align-items-center flex-column-reverse flex-md-row">
+    <div className="row g-0 align-items-center flex-column-reverse flex-md-row first-slide">
       <div className="col-md-6 p-5 mt-lg-5">
         <h1 className="display-5 animated fadeIn mb-4">
           Find A <span className="text-primary">Perfect Home</span> To Live With
@@ -40,7 +40,7 @@ export default function Home() {
   {/* Header End */}
   {/* Search Start */}
   <div
-    className="container-fluid bg-primary mb-5 wow fadeIn"
+    className="container-fluid bg-primary mb-5 wow fadeIn small-form"
     data-wow-delay="0.1s"
     style={{ padding: 35 }}
   >
@@ -255,13 +255,13 @@ export default function Home() {
             >
               <div className="property-item rounded overflow-hidden">
                 <div className="position-relative overflow-hidden">
-                  <a href="">
+                  <Link to="/property">
                     <img
                       className="img-fluid"
                       src="assest/img/property-1.jpg"
                       alt=""
                     />
-                  </a>
+                  </Link>
                   <div className="bg-primary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">
                     For Rent
                   </div>
@@ -279,18 +279,7 @@ export default function Home() {
                     123 Street, New York, USA
                   </p>
                 </div>
-                <div className="d-flex border-top">
-                  <small className="flex-fill text-center border-end py-2">
-                    <i className="fa fa-ruler-combined text-primary me-2" />
-                    1000 Sqft
-                  </small>
-                  <small className="flex-fill text-center border-end py-2">
-                    <i className="fa fa-bed text-primary me-2" />3 Bed
-                  </small>
-                  <small className="flex-fill text-center py-2">
-                    <i className="fa fa-bath text-primary me-2" />2 Bath
-                  </small>
-                </div>
+                
               </div>
             </div>
             <div
@@ -323,18 +312,7 @@ export default function Home() {
                     123 Street, New York, USA
                   </p>
                 </div>
-                <div className="d-flex border-top">
-                  <small className="flex-fill text-center border-end py-2">
-                    <i className="fa fa-ruler-combined text-primary me-2" />
-                    1000 Sqft
-                  </small>
-                  <small className="flex-fill text-center border-end py-2">
-                    <i className="fa fa-bed text-primary me-2" />3 Bed
-                  </small>
-                  <small className="flex-fill text-center py-2">
-                    <i className="fa fa-bath text-primary me-2" />2 Bath
-                  </small>
-                </div>
+                
               </div>
             </div>
             <div
@@ -367,18 +345,7 @@ export default function Home() {
                     123 Street, New York, USA
                   </p>
                 </div>
-                <div className="d-flex border-top">
-                  <small className="flex-fill text-center border-end py-2">
-                    <i className="fa fa-ruler-combined text-primary me-2" />
-                    1000 Sqft
-                  </small>
-                  <small className="flex-fill text-center border-end py-2">
-                    <i className="fa fa-bed text-primary me-2" />3 Bed
-                  </small>
-                  <small className="flex-fill text-center py-2">
-                    <i className="fa fa-bath text-primary me-2" />2 Bath
-                  </small>
-                </div>
+                
               </div>
             </div>
             <div
@@ -411,18 +378,7 @@ export default function Home() {
                     123 Street, New York, USA
                   </p>
                 </div>
-                <div className="d-flex border-top">
-                  <small className="flex-fill text-center border-end py-2">
-                    <i className="fa fa-ruler-combined text-primary me-2" />
-                    1000 Sqft
-                  </small>
-                  <small className="flex-fill text-center border-end py-2">
-                    <i className="fa fa-bed text-primary me-2" />3 Bed
-                  </small>
-                  <small className="flex-fill text-center py-2">
-                    <i className="fa fa-bath text-primary me-2" />2 Bath
-                  </small>
-                </div>
+               
               </div>
             </div>
             <div
@@ -455,18 +411,7 @@ export default function Home() {
                     123 Street, New York, USA
                   </p>
                 </div>
-                <div className="d-flex border-top">
-                  <small className="flex-fill text-center border-end py-2">
-                    <i className="fa fa-ruler-combined text-primary me-2" />
-                    1000 Sqft
-                  </small>
-                  <small className="flex-fill text-center border-end py-2">
-                    <i className="fa fa-bed text-primary me-2" />3 Bed
-                  </small>
-                  <small className="flex-fill text-center py-2">
-                    <i className="fa fa-bath text-primary me-2" />2 Bath
-                  </small>
-                </div>
+                
               </div>
             </div>
             <div
@@ -499,18 +444,7 @@ export default function Home() {
                     123 Street, New York, USA
                   </p>
                 </div>
-                <div className="d-flex border-top">
-                  <small className="flex-fill text-center border-end py-2">
-                    <i className="fa fa-ruler-combined text-primary me-2" />
-                    1000 Sqft
-                  </small>
-                  <small className="flex-fill text-center border-end py-2">
-                    <i className="fa fa-bed text-primary me-2" />3 Bed
-                  </small>
-                  <small className="flex-fill text-center py-2">
-                    <i className="fa fa-bath text-primary me-2" />2 Bath
-                  </small>
-                </div>
+                
               </div>
             </div>
             <div

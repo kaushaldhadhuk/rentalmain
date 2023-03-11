@@ -4,6 +4,7 @@
     --secondary: #FF6922;
     --light: #EFFDF5;
     --dark: #0E2E50;
+    --bs-primary-rgb: #000000;
 }
 
 .back-to-top {
@@ -14,6 +15,9 @@
     z-index: 99;
 }
 
+.text-primary{
+    color: #00B98E !important;
+  }
 
 /*** Spinner ***/
 #spinner {
@@ -44,6 +48,9 @@
     width: 38px;
     height: 38px;
 }
+.add-property-btn{
+    white-space: nowrap;
+  }
 
 .btn-sm-square {
     width: 32px;
@@ -70,14 +77,13 @@
 /*** Navbar ***/
 .nav-bar {
     position: relative;
-    margin-top: 45px;
     padding: 0 3rem;
     transition: .5s;
     z-index: 9999;
 }
 
 .nav-bar.sticky-top {
-    position: sticky;
+    position: absolute;
     padding: 0;
     z-index: 9999;
 }
@@ -87,13 +93,14 @@
 }
 
 .navbar .dropdown-toggle::after {
-    border: none;
+    /* border: none;
     content: "\f107";
     font-family: "Font Awesome 5 Free";
     font-weight: 900;
     vertical-align: middle;
     margin-left: 5px;
-    transition: .5s;
+    transition: .5s; */
+    display: none;
 }
 
 .navbar .dropdown-toggle[aria-expanded=true]::after {
@@ -107,12 +114,17 @@
     font-size: 15px;
     text-transform: uppercase;
     outline: none;
+    white-space: nowrap;
 }
 
 .navbar-light .navbar-nav .nav-link:hover,
 .navbar-light .navbar-nav .nav-link.active {
-    color: var(--primary);
+    color: var(--primary) !important;
 }
+
+/* .first-slide{
+    margin-top: 45px;
+} */
 
 @media (max-width: 991.98px) {
     .nav-bar {
@@ -135,29 +147,34 @@
 }
 
 .navbar-light .navbar-nav .nav-link {
-    color: var(--dark);
+    color: var(--dark) !important;
     font-weight: 500;
 }
-
+.navbar .nav-item .dropdown-menu.show{
+    display: block;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+}
 @media (min-width: 992px) {
-    .navbar .nav-item .dropdown-menu {
+    /* .navbar .nav-item .dropdown-menu {
         display: block;
         top: 100%;
         margin-top: 0;
         transform: rotateX(-75deg);
         transform-origin: 0% 0%;
-        opacity: 0;
-        visibility: hidden;
+        opacity: 1;
         transition: .5s;
         
-    }
+    } */
 
-    .navbar .nav-item:hover .dropdown-menu {
+    /* .navbar .nav-item:hover .dropdown-menu {
         transform: rotateX(0deg);
         visibility: visible;
         transition: .5s;
         opacity: 1;
-    }
+    } */
 }
 
 

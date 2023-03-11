@@ -1,6 +1,55 @@
-import React from 'react'
+import axios from 'axios'
+import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { toast } from 'react-toastify'
+import { baseUrl } from '../BaseUrl/BaseUrl'
 
 export default function EditProfile() {
+    const userData = JSON.parse(localStorage.getItem("userData"))
+    const navigate = useNavigate()
+    const [newData,setNewData] = useState({
+        name:userData?.name,
+        email:userData?.email,
+        phone:userData?.phone,
+        city:userData?.city,
+        state:userData?.state,
+        country:userData?.country,
+        pincode:userData?.pincode,
+        address:userData?.address,
+    })
+
+    const handleChange = (e) =>{
+        let {name,value} = e.target
+        setNewData({...newData,[name]:value})
+    }
+
+    const handleSubmit = async() =>{
+        let config = {
+            headers: {
+              'Authorization': 'Bearer ' + localStorage.getItem("token")
+            }
+          }
+          let body = {
+            name:newData?.name,
+        phone:newData?.phone,
+        city:newData?.city,
+        state:newData?.state,
+        country:newData?.country,
+        pincode:newData?.pincode,
+        address:newData?.address,
+          }
+            
+            await axios.put(baseUrl +"users/update-user",body,config).then((res)=>{
+              console.log("res",res)
+              toast.success(res?.data?.message)
+    
+              localStorage.setItem("userData",JSON.stringify(res?.data?.user))
+              navigate("/profile")
+            }).catch((err)=>{
+              console.log("err",err)
+            })
+        
+      }
     return (
         <div>
             <style>
@@ -61,7 +110,9 @@ export default function EditProfile() {
                                             <input
                                                 type="text"
                                                 className="form-control"
-                                                defaultValue="Yash Kheni"
+                                                name='name'
+                                                value={newData?.name}
+                                                onChange={(e) => handleChange(e)}
                                             />
                                         </div>
                                     </div>
@@ -73,7 +124,9 @@ export default function EditProfile() {
                                             <input
                                                 type="text"
                                                 className="form-control"
-                                                defaultValue="yashkheni55@gmail.com"
+                                                name='email'
+                                                value={newData?.email}
+                                                disabled
                                             />
                                         </div>
                                     </div>
@@ -85,7 +138,9 @@ export default function EditProfile() {
                                             <input
                                                 type="text"
                                                 className="form-control"
-                                                defaultValue="7778883067"
+                                                name='phone'
+                                                value={newData?.phone}
+                                                onChange={(e) => handleChange(e)}
                                             />
                                         </div>
                                     </div>
@@ -97,7 +152,9 @@ export default function EditProfile() {
                                             <input
                                                 type="text"
                                                 className="form-control"
-                                                defaultValue="Surat"
+                                                name='city'
+                                                value={newData?.city}
+                                                onChange={(e) => handleChange(e)}
                                             />
                                         </div>
                                     </div>
@@ -109,7 +166,9 @@ export default function EditProfile() {
                                             <input
                                                 type="text"
                                                 className="form-control"
-                                                defaultValue="Gujarat"
+                                                name='state'
+                                                value={newData?.state}
+                                                onChange={(e) => handleChange(e)}
                                             />
                                         </div>
                                     </div>
@@ -121,7 +180,9 @@ export default function EditProfile() {
                                             <input
                                                 type="text"
                                                 className="form-control"
-                                                defaultValue="India"
+                                                name='country'
+                                                value={newData?.country}
+                                                onChange={(e) => handleChange(e)}
                                             />
                                         </div>
                                     </div>
@@ -133,7 +194,9 @@ export default function EditProfile() {
                                             <input
                                                 type="text"
                                                 className="form-control"
-                                                defaultValue="395006"
+                                                name='pincode'
+                                                value={newData?.pincode}
+                                                onChange={(e) => handleChange(e)}
                                             />
                                         </div>
                                     </div>
@@ -145,14 +208,16 @@ export default function EditProfile() {
                                             <input
                                                 type="text"
                                                 className="form-control"
-                                                defaultValue="Panchavati raw house"
+                                                name='address'
+                                                value={newData?.address}
+                                                onChange={(e) => handleChange(e)}
                                             />
                                         </div>
                                     </div>
                                     <div className="row">
                                         <div className="col-sm-3" />
                                         <div className="col-sm-9 text-secondary">
-                                        <button className="btn btn-primary">Save Changes</button>
+                                        <button className="btn btn-primary" onClick={handleSubmit}>Save Changes</button>
                                         </div>
                                     </div>
                                 </div>
